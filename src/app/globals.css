@@ -29,6 +29,7 @@ body {
 @layer base {
   :root {
     --gray: #f2f3f4;
+    --red: #c0392b;
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -57,6 +58,7 @@ body {
   }
   .dark {
     --gray: 240 10% 3.9%;
+    --red: #c0392b;
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;

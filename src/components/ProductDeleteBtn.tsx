@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { deleteCategory } from '@/app/actions/categoryAction'
+import { deleteProduct } from '@/app/actions/productActions'
 import { useSWRConfig } from "swr"
 import { toast } from 'sonner';
 import {
@@ -20,7 +20,7 @@ interface ConfirmDialogProps {
     onConfirm: (id: string|number) => void;
 }
 
-export default function CategoryDeleteBtn({
+export default function ProductDeleteBtn({
   id,
   title,
   open,
@@ -31,10 +31,10 @@ export default function CategoryDeleteBtn({
     
     // Handle confirmation
     const handleConfirm = async () => {
-        const result = await deleteCategory(id)
+        const result = await deleteProduct(id)
 
         if(result){
-            toast.success('Category deleted successfully')
+            toast.success('Product deleted successfully')
             onConfirm(id)
             onOpenChange(false)
             mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/get`)
@@ -55,7 +55,7 @@ export default function CategoryDeleteBtn({
             <DialogHeader>
             <DialogTitle>Confirm Deletion</DialogTitle>
             <DialogDescription>
-                Are you sure you want to delete the item <span className='font-bold'>{title}</span>? <span className='text-red-500 font-semibold'>All the related products to this category</span> will be also deleted!
+                Are you sure you want to delete the item <span className='font-bold'>{title}</span>?
             </DialogDescription>
             </DialogHeader>
             <DialogFooter>

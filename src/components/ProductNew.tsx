@@ -36,14 +36,14 @@ export default function ProductNew() {
             return
         }
         
-        const res = await createProduct(name, desc, selectedCategory)
+        const res = await createProduct(name, desc, selectedCategory, serverUrl || undefined)
         if (res) {
             setDesc('')
             setName('')
             setSelectedCategory(null)
             toast.success('Product created successfully')
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/get`)
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/products/get`)
+            mutate(`${serverUrl}/api/categories/get`)
+            mutate(`${serverUrl}/api/products/get`)
             setOpenNew(false)
         } else {
             toast.error("Failed to create product.")

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
 import { Button } from "@/components/ui/button"
-import CategoryDeleteBtn from '@/components/CategoryDeleteBtn'
-import CategoryEdit from '@/components/CategoryEdit'
+import ProductDeleteBtn from '@/components/ProductDeleteBtn'
+import ProductEdit from '@/components/ProductEdit'
 import { SlOptions } from "react-icons/sl";
 import {
   DropdownMenu,
@@ -12,11 +12,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-export default function CategoryDropdown({
+export default function ProductDropdown({
     itemId,
     itemName,
-    itemDescription
-}:{itemId:number, itemName:string, itemDescription:string}) {
+    itemDescription,
+    itemCategory,
+    itemPrice
+}:{
+    itemId:number, 
+    itemName:string, 
+    itemDescription:string,
+    itemCategory:number|string,
+    itemPrice:number
+}) {
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
 
@@ -48,18 +56,20 @@ export default function CategoryDropdown({
                 </DropdownMenuGroup>
             </DropdownMenuContent>
             {/* TODO: Here we can simplify a lot of the code  */}
-            <CategoryDeleteBtn 
+            <ProductDeleteBtn 
                 id={itemId} 
                 title={itemName}
                 open={open} 
                 onOpenChange={()=>{setOpen(false)}} 
                 onConfirm={()=>{}}
             />
-            <CategoryEdit
+            <ProductEdit
                 open={openEdit} 
                 onOpenChange={()=>{setOpenEdit(false)}} 
                 title={itemName}
                 description={itemDescription}
+                itemCategory={itemCategory}
+                price={itemPrice}
                 itemId={itemId}
             />
         </DropdownMenu>
