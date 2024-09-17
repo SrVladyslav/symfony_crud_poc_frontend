@@ -16,6 +16,7 @@ import {
     SheetHeader,
     SheetTitle
 } from "@/components/ui/sheet"
+import { useServerUrl } from '@/hooks/useServerUrl';
 
 export default function CategoryNew() {
 
@@ -23,6 +24,7 @@ export default function CategoryNew() {
     const [name, setName] = useState<any>('');
     const [desc, setDesc] = useState<any>('');
     const [openNew, setOpenNew] = useState(false);
+    const { serverUrl } = useServerUrl();
 
     const handleCreate = async ()=>{
         if(!name || !desc) {
@@ -30,14 +32,14 @@ export default function CategoryNew() {
             return
         }
 
-        const res = await createCategory(name, desc)
+        const res = await createCategory(name, desc, serverUrl)
 
         if(res) {
             setDesc('')
             setName('')
             toast.success('Category created successfully')
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/get`)
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/products/get`)
+            mutate(`${serverUrl}/api/categories/get`)
+            mutate(`${serverUrl}/api/products/get`)
             setOpenNew(false)
         } else {
             toast.error("Failed to create category.")
@@ -54,7 +56,7 @@ export default function CategoryNew() {
                     <SheetHeader>
                         <SheetTitle>Create New Category</SheetTitle>
                         <SheetDescription>
-                            Fill the new category information here. Click create when you're done.
+                            Fill the new category information here. Click create when you&apos;re done.
                         </SheetDescription>
                     </SheetHeader>
                     <div className="grid gap-4 py-4">
@@ -84,7 +86,12 @@ export default function CategoryNew() {
                         </div>
                     </div>
                     <SheetFooter className='gap-y-2'>
-                        <Button type="button" variant="default" onClick={handleCreate}>
+                        <Button 
+                            type="button" 
+                            variant="default" 
+                            onClick={handleCreate}
+                            disabled={!name || !desc}
+                        >
                             Create category
                         </Button>
                     </SheetFooter>

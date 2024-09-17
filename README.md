@@ -20,3 +20,15 @@ npm install
 ```bash
 npm run dev
 ```
+
+4. You can also create a build for production:
+
+```bash
+npm run build
+```
+
+5. And then run the build:
+
+```bash
+npm run start
+```

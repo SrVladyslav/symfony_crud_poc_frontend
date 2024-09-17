@@ -11,6 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useServerUrl } from '@/hooks/useServerUrl';
 
 interface ConfirmDialogProps {
     id: string|number;
@@ -28,6 +29,7 @@ export default function ProductDeleteBtn({
   onConfirm,
 }: ConfirmDialogProps) {
     const { mutate } = useSWRConfig()
+    const { serverUrl } = useServerUrl();
     
     // Handle confirmation
     const handleConfirm = async () => {
@@ -37,8 +39,8 @@ export default function ProductDeleteBtn({
             toast.success('Product deleted successfully')
             onConfirm(id)
             onOpenChange(false)
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/get`)
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/products/get`)
+            mutate(`${serverUrl}/api/categories/get`)
+            mutate(`${serverUrl}/api/products/get`)
             return
         }
         console.log("failed ")

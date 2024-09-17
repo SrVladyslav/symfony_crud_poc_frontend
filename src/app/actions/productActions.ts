@@ -5,6 +5,7 @@ export const createProduct = async (
     productName:string,
     productDescription:string,
     categoryId:number|string,
+    price:number,
     serverUrl?:string
 )=>{
     try{
@@ -20,7 +21,8 @@ export const createProduct = async (
             body: JSON.stringify({
                 name: productName,
                 description: productDescription,
-                categoryId: categoryId
+                categoryId: categoryId,
+                price: price
             })
         })
 
@@ -30,7 +32,7 @@ export const createProduct = async (
 
         return true
 
-    }catch(e:any){
+    }catch(e:unknown){
         return false
     }
 }
@@ -68,7 +70,7 @@ export const updateProduct = async (
 
         return true
 
-    }catch(e:any){
+    }catch(e:unknown){
         return false
     }
 }
@@ -94,7 +96,7 @@ export const deleteProduct = async (productId:number|string, serverUrl?:string)=
 
         return true
 
-    }catch(e:any){
+    }catch(e:unknown){
         return false
     }
 }

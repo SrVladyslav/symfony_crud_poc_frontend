@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useSWRConfig } from 'swr';
-import { updateProduct } from '@/app/actions/productActions'; // Assuming there's an updateProduct function
+import { updateProduct } from '@/app/actions/productActions';
 import { useServerUrl } from '@/hooks/useServerUrl';
 import useCategoriesData from '@/hooks/useCategoriesData';
 import { toast } from 'sonner';
@@ -17,6 +17,11 @@ import {
     SheetTitle
 } from "@/components/ui/sheet";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+interface Category {
+    id: number | string;
+    name: string;
+}
 
 export default function ProductEdit({
     open,
@@ -42,7 +47,7 @@ export default function ProductEdit({
     const [name, setName] = useState<string>(title);
     const [desc, setDesc] = useState<string>(description);
     const [selectedCategory, setSelectedCategory] = useState<string | number>(itemCategory);
-    const [productPrice, setProductPrice] = useState<number>(price); // State for price
+    const [productPrice, setProductPrice] = useState<number>(price); 
 
     const handleUpdate = async () => {
         if (!name || !desc || !selectedCategory || isNaN(productPrice)) {
@@ -67,7 +72,7 @@ export default function ProductEdit({
                 <SheetHeader>
                     <SheetTitle>Edit Product</SheetTitle>
                     <SheetDescription>
-                        Modify the product details here. Click save when you're done.
+                        Modify the product details here. Click save when you&apos;re done.
                     </SheetDescription>
                 </SheetHeader>
                 <div className="grid gap-4 py-4">
@@ -117,7 +122,7 @@ export default function ProductEdit({
                                     </SelectTrigger>
                                     <SelectContent>
                                         {categories && categories.data.length > 0 ? (
-                                            categories.data.map((category: any) => (
+                                            categories.data.map((category: Category) => (
                                                 <SelectItem key={category.id} value={category.id.toString()}>
                                                     {category.name}
                                                 </SelectItem>

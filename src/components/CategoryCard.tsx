@@ -2,10 +2,17 @@ import React from 'react'
 import { FaBoxes } from "react-icons/fa";
 import CategoryDropdown from "@/components/CategoryDropdown";
 
+interface Category {
+    id: number;
+    name: string;
+    description: string;
+    products: any[];
+}
+
 const CategoryCard =({
     item
 }:{
-    item: any
+    item:Category
 })=>{
     return <div className='relative px-4 py-3 rounded-md 
         border-[1px] border-none hover:border-[var(--purple-2)] 

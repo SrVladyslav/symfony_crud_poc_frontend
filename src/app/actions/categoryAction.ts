@@ -1,10 +1,10 @@
 'use server'
 
 // Delete category using delete API from Symfony
-export const deleteCategory = async (categoryId:number|string, serverUrl?:string)=>{
+export const deleteCategory = async (categoryId:number|string, serverUrl?:string|null)=>{
     try{
         // TODO: Add validations
-        
+
         const url = serverUrl || process.env.NEXT_PUBLIC_API_URL
         const res = await fetch(`${url}/api/categories/${categoryId}/delete`, {
             method: 'DELETE',
@@ -15,12 +15,13 @@ export const deleteCategory = async (categoryId:number|string, serverUrl?:string
         })
 
         if (!res.ok) {
-            throw new Error('Failed to delete category');
+            return false
+            // throw new Error('Failed to delete category');
         }
 
         return true
 
-    }catch(e:any){
+    }catch(e:unknown){
         return false
     }
 }
@@ -30,7 +31,7 @@ export const updateCategory = async (
     categoryId:number|string,
     categoryName:string,
     categoryDescription:string,
-    serverUrl?:string
+    serverUrl?:string|null
 )=>{
     try{
         // TODO: Add validations
@@ -54,7 +55,7 @@ export const updateCategory = async (
 
         return true
 
-    }catch(e:any){
+    }catch(e:unknown){
         return false
     }
 }
@@ -63,7 +64,7 @@ export const updateCategory = async (
 export const createCategory = async (
     categoryName:string,
     categoryDescription:string,
-    serverUrl?:string
+    serverUrl?:string | null
 )=>{
     try{
         // TODO: Add validations
@@ -87,7 +88,7 @@ export const createCategory = async (
 
         return true
 
-    }catch(e:any){
+    }catch(e:unknown){
         return false
     }
 }

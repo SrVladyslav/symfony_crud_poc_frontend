@@ -1,6 +1,7 @@
 import CategorySection from "@/components/sections/CategorySection";
 import ProductSection from "@/components/sections/ProductSection";
 import ServerUrlSelection from "@/components/sections/ServerUrlSelection";
+import Footer from "@/components/layouts/Footer";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
         <ServerUrlSelection/>
         <CategorySection/>
         <ProductSection/>
+        <Footer/>
       </main>
     </div>
   );

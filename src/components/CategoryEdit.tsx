@@ -16,6 +16,7 @@ import {
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet";
+import { useServerUrl } from '@/hooks/useServerUrl';
 
 interface CategoryEditProps {
     open: boolean;
@@ -35,6 +36,7 @@ export default function CategoryEdit({
     const { mutate } = useSWRConfig()
     const [name, setName] = useState<any>(title);
     const [desc, setDesc] = useState<any>(description);
+    const { serverUrl } = useServerUrl();
 
     const handleSave = async () => {
         // Validate here the items, normally you will be using forms here 
@@ -43,12 +45,12 @@ export default function CategoryEdit({
         }
 
         const res = await updateCategory(
-            itemId, name, desc
+            itemId, name, desc, serverUrl
         )
 
         if(res) {
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/categories/get`)
-            mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/products/get`)
+            mutate(`${serverUrl}/api/categories/get`)
+            mutate(`${serverUrl}/api/products/get`)
             toast.success('Category updated successfully')
             onOpenChange(false);
         }else{
@@ -62,7 +64,7 @@ export default function CategoryEdit({
                 <SheetHeader>
                     <SheetTitle>Edit Item</SheetTitle>
                     <SheetDescription>
-                        Make changes to the item here. Click save when you're done.
+                        Make changes to the item here. Click save when you&apos;re done.
                     </SheetDescription>
                 </SheetHeader>
                 <div className="grid gap-4 py-4">

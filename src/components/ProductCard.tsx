@@ -29,7 +29,7 @@ const ProductCard =({
             </CategoryLabel>
             <div className='flex items-center font-semibold'> 
                 <TbCurrencyEuro className='text-[1rem] mb-0.5 text-[var(--foreground)]'/>
-                <span className='text-base text-[var(--foreground)]'>{item?.price}</span>
+                <span className='text-base text-[var(--foreground)]'>{item?.price?.toFixed(2)}</span>
             </div>
         </div>
     </div>
