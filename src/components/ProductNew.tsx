@@ -47,6 +47,7 @@ export default function ProductNew() {
             setDesc('')
             setName('')
             setSelectedCategory(null)
+            setProductPrice(0)
             toast.success('Product created successfully')
             mutate(`${serverUrl}/api/categories/get`)
             mutate(`${serverUrl}/api/products/get`)
