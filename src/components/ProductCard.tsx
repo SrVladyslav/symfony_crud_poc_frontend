@@ -12,6 +12,7 @@ const ProductCard =({
         border-[1px] border-none hover:border-[var(--purple-2)] 
         drop-shadow-sm flex flex-col bg-[white] text-sm
     '>
+        {/* Header: name and dropdown */}
         <div className='w-full grid grid-cols-[auto_40px]'>
             <span className='text-[var(--foreground)] text-sm font-bold'>{item?.name}</span>
             <ProductDropdown
@@ -22,8 +23,12 @@ const ProductCard =({
                 itemPrice={item?.price}
             />
         </div>
-        <p className='text-xs text-[var(--foreground)] tracking-wider mt-1.5'>{item?.description}</p>
-        <div className='flex items-center justify-between gap-0 mt-5'>
+
+        {/* Description */}
+        <p className='text-xs text-[var(--foreground)] tracking-wider mt-1.5 flex-grow'>{item?.description}</p>
+        
+        {/* Footer: Category and Price */}
+        <div className='flex items-center justify-between gap-0 mt-auto pt-5'>
             <CategoryLabel> 
                 {item?.category?.name}
             </CategoryLabel>
