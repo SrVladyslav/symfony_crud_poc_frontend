@@ -22,7 +22,7 @@ export function useServerUrl() {
     };
 
     return {
-      serverUrl,
-      updateServerUrl,
+        serverUrl,
+        updateServerUrl,
     };
 }
