@@ -33,7 +33,7 @@ export default function ProductDeleteBtn({
     
     // Handle confirmation
     const handleConfirm = async () => {
-        const result = await deleteProduct(id)
+        const result = await deleteProduct(id, serverUrl || undefined)
 
         if(result){
             toast.success('Product deleted successfully')
