@@ -92,6 +92,7 @@ export default function CategoryEdit({
                         <Textarea 
                             id="description" 
                             value={desc} 
+                            rows={4}
                             onChange={(e) => setDesc(e.target.value)} 
                             className="col-span-3" 
                         />

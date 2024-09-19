@@ -94,6 +94,7 @@ export default function ProductNew() {
                                 id="description" 
                                 placeholder='Description'
                                 value={desc} 
+                                rows={4}
                                 onChange={(e) => setDesc(e.target.value)} 
                                 className="col-span-3" 
                             />
